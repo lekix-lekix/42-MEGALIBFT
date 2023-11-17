@@ -6,7 +6,7 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:33:33 by lekix             #+#    #+#              #
-#    Updated: 2023/11/15 16:16:42 by kipouliq         ###   ########.fr        #
+#    Updated: 2023/11/17 14:38:52 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,9 +80,9 @@ $(NAME): $(OBJS)
 bonus: $(BONUS_OBJS)
 	ar -rcs $(NAME) $(BONUS_OBJS)
 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(SRCS_BONUS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
+# so:
+	# $(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(SRCS_BONUS)
+	# gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
 	
 clean:
 	rm -f *.o
