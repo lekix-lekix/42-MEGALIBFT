@@ -6,52 +6,51 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:33:33 by lekix             #+#    #+#              #
-#    Updated: 2024/01/11 16:46:21 by kipouliq         ###   ########.fr        #
+#    Updated: 2024/01/11 15:56:51 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megalibft.a
 
-PATH_GNL = ./get_next_line
+NAME = libftprintf.a
 
-PATH_FTPRINTF = ./ft_printf
+SRC = ft_printf.c \
+	func_calls_nb.c \
+	func_calls_hex.c \
+	func_calls_chr.c \
+	ft_putnbr.c \
+	ft_putnbr_base.c \
+	conversions.c \
+	utils.c
 
-PATH_LIBFT = ./ft_printf/libft
-
-LIBFT = libft.a
-
-LIBFTPRINTF = libftprintf.a
-
-GNL = get_next_line.a
+OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-INCLUDE = -I .
+FLAGS = -Wall -Wextra -Werror -g
 
-CFLAGS = -Wall -Wextra -Werror
+PATH_LIBFT = ./libft
 
-all: $(NAME)
+all : bonus
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c  $< -o $@
+$(NAME) : $(OBJ)
+	make -C $(PATH_LIBFT)
+	cp ./libft/libft.a ./libftprintf.a
+	ar -rcs $@ $(OBJ)
 
-$(NAME): $(OBJS)	
-	make -C $(PATH_FTPRINTF)
-	make -C $(PATH_GNL)
-	mv ./ft_printf/libft/libft.a ./libft.a
-	mv ./ft_printf/libftprintf.a ./libftprintf.a
-	mv ./get_next_line/get_next_line.a ./get_next_line.a
-	ar -rcT $(NAME) $(LIBFT) $(LIBFTPRINTF) $(GNL) 
+bonus : $(NAME)
 
-clean:
-	make -sC $(PATH_FTPRINTF) clean
-	make -sC $(PATH_GNL) clean
-	rm -f *.o
+%.o:%.c
+	$(CC) $(FLAGS) -c $< -I $(PATH_LIBFT) -o $@
 
-fclean: clean
-	rm -f *.a
+clean :
+	make -sC $(PATH_LIBFT) clean
+	rm -f *o
 
-re: fclean
+fclean : clean
+	make -sC $(PATH_LIBFT) fclean
+	rm -f $(NAME)
+
+re : fclean
 	make all
 
-.PHONY: all clean fclean re bonus
+.PHONY : all bonus clean fclean re

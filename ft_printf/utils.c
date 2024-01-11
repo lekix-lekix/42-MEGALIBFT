@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:00:22 by kipouliq          #+#    #+#             */
-/*   Updated: 2023/11/14 18:09:44 by kipouliq         ###   ########.fr       */
+/*   Created: 2023/11/23 13:05:05 by kipouliq          #+#    #+#             */
+/*   Updated: 2023/11/24 14:39:36 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_lstsize(t_list *lst)
+int	t_fp_conversion_check(char c)
 {
-	int	size;
+	int		i;
+	char	convert_set[10];
 
-	size = 0;
-	if (!lst)
-		return (0);
-	while (lst)
+	i = -1;
+	ft_strlcpy(convert_set, "cspdiuxX%", 10);
+	while (convert_set[++i])
 	{
-		lst = lst->next;
-		size++;
+		if (convert_set[i] == c)
+			return (1);
 	}
-	return (size);
+	return (0);
+}
+
+void	ft_write_count(char c, int *count)
+{
+	write(1, &c, 1);
+	*count += 1;
 }

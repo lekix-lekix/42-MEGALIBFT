@@ -6,23 +6,58 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:33:33 by lekix             #+#    #+#              #
-#    Updated: 2024/01/11 16:46:21 by kipouliq         ###   ########.fr        #
+#    Updated: 2024/01/11 16:05:45 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megalibft.a
+NAME = libft.a
 
-PATH_GNL = ./get_next_line
+SRCS = ft_isalnum.c \
+		ft_isalpha.c \
+		ft_isdigit.c \
+		ft_strlen.c \
+		ft_isprint.c \
+		ft_isascii.c \
+		ft_tolower.c \
+		ft_toupper.c \
+		ft_atoi.c \
+		ft_strlcpy.c \
+		ft_strncmp.c \
+		ft_strlcat.c \
+		ft_strchr.c \
+		ft_strrchr.c \
+		ft_strnstr.c \
+		ft_strdup.c \
+		ft_putchar_fd.c \
+		ft_putstr_fd.c \
+		ft_putendl_fd.c \
+		ft_memset.c \
+		ft_memcpy.c \
+		ft_putnbr_fd.c \
+		ft_substr.c \
+		ft_itoa.c \
+		ft_bzero.c \
+		ft_memchr.c \
+		ft_memcmp.c \
+		ft_calloc.c \
+		ft_strjoin.c \
+		ft_split.c \
+		ft_striteri.c \
+		ft_strmapi.c \
+		ft_memmove.c \
+		ft_strtrim.c \
+		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c
 
-PATH_FTPRINTF = ./ft_printf
 
-PATH_LIBFT = ./ft_printf/libft
-
-LIBFT = libft.a
-
-LIBFTPRINTF = libftprintf.a
-
-GNL = get_next_line.a
+OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
@@ -36,20 +71,13 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c  $< -o $@
 
 $(NAME): $(OBJS)	
-	make -C $(PATH_FTPRINTF)
-	make -C $(PATH_GNL)
-	mv ./ft_printf/libft/libft.a ./libft.a
-	mv ./ft_printf/libftprintf.a ./libftprintf.a
-	mv ./get_next_line/get_next_line.a ./get_next_line.a
-	ar -rcT $(NAME) $(LIBFT) $(LIBFTPRINTF) $(GNL) 
+	ar -rcs $(NAME) $(OBJS) 
 
 clean:
-	make -sC $(PATH_FTPRINTF) clean
-	make -sC $(PATH_GNL) clean
 	rm -f *.o
 
 fclean: clean
-	rm -f *.a
+	rm -f libft.a
 
 re: fclean
 	make all
