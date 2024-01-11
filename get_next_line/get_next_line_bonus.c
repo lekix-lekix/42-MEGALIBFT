@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:20:39 by kipouliq          #+#    #+#             */
-/*   Updated: 2023/12/04 15:16:21 by kipouliq         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:29:46 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_dup_cpy_malloc_free(char *str, char *end_ptr, char *to_free)
 	}
 	else
 	{
-		final_str = malloc(sizeof(char) * ft_strlen(str) + 1);
+		final_str = malloc(sizeof(char) * ft_strlen_2(str) + 1);
 		if (!final_str)
 			return (something_happened(to_free, NULL));
 		while (str[++i])
@@ -47,7 +47,7 @@ char	*ft_end_of_file(char **line, char **static_str)
 	if (!(*line))
 		return (something_happened(*static_str, NULL));
 	*static_str = NULL;
-	if (!ft_strlen(*line))
+	if (!ft_strlen_2(*line))
 	{
 		free(*line);
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:51 by kipouliq          #+#    #+#             */
-/*   Updated: 2024/01/11 15:35:30 by kipouliq         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:29:48 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*something_happened(char *s1, char *s2)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_2(const char *s)
 {
 	size_t	len;
 
@@ -51,8 +51,8 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	j = -1;
 	if (!s1)
 		return (s2);
-	s1_size = ft_strlen(s1);
-	s2_size = ft_strlen(s2);
+	s1_size = ft_strlen_2(s1);
+	s2_size = ft_strlen_2(s2);
 	final_str = malloc(sizeof(char) * (s1_size + s2_size + 1));
 	if (!final_str)
 		return (something_happened(s1, s2));
