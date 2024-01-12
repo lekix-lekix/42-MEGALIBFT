@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:22:46 by kipouliq          #+#    #+#             */
-/*   Updated: 2024/01/11 18:29:50 by kipouliq         ###   ########.fr       */
+/*   Updated: 2024/01/12 12:09:10 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int free_static);
 char	*something_happened(char *s1, char *s2);
 size_t	ft_strlen_2(const char *s);
 char	*ft_strjoin_gnl(char *s1, char *s2);

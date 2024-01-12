@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:20:39 by kipouliq          #+#    #+#             */
-/*   Updated: 2024/01/11 18:29:49 by kipouliq         ###   ########.fr       */
+/*   Updated: 2024/01/12 12:25:29 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_fill_static(char **static_str, char **eol, int *bytes_read, int fd)
 	return (line);
 }
 
-char	*ft_return_line(char **static_str, char *eol)
+char	*ft_return_line(char **static_str, char *eol, int free_static)
 {
 	char	*new_line;
 
@@ -86,7 +86,7 @@ char	*ft_return_line(char **static_str, char *eol)
 	*static_str = ft_dup_cpy_malloc_free(eol + 1, NULL, *static_str);
 	if (!*static_str)
 		return (something_happened(new_line, NULL));
-	if (static_str && *static_str[0] == '\0')
+	if ((static_str && *static_str[0] == '\0') || free_static)
 	{
 		free(*static_str);
 		*static_str = NULL;
@@ -94,7 +94,7 @@ char	*ft_return_line(char **static_str, char *eol)
 	return (new_line);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int free_static)
 {
 	static char	*static_str;
 	char		*line;
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 			return (something_happened(static_str, NULL));
 	}
 	if (eol)
-		return (ft_return_line(&static_str, eol));
+		return (ft_return_line(&static_str, eol, free_static));
 	if (!bytes_read && static_str)
 	{
 		line = ft_end_of_file(&line, &static_str);

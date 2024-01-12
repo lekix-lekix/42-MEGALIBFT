@@ -6,7 +6,7 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:33:33 by lekix             #+#    #+#              #
-#    Updated: 2024/01/11 17:57:06 by kipouliq         ###   ########.fr        #
+#    Updated: 2024/01/12 12:19:36 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ $(NAME): $(OBJS)
 	mv ./ft_printf/libft/libft.a ./libft.a
 	mv ./ft_printf/libftprintf.a ./libftprintf.a
 	mv ./get_next_line/get_next_line.a ./get_next_line.a
-	ar -rcT $(NAME) $(LIBFT) $(LIBFTPRINTF) $(GNL) 
+	ar -rcT $(NAME) $(LIBFT) $(LIBFTPRINTF) $(GNL)
+	# rm get_next_line.a libft.a libftprintf.a
 
 clean:
 	make -sC $(PATH_FTPRINTF) clean
