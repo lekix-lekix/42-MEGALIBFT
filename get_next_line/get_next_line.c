@@ -6,11 +6,12 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:20:39 by kipouliq          #+#    #+#             */
-/*   Updated: 2024/01/12 12:25:29 by kipouliq         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:13:23 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./get_next_line.h"
+#include <stdio.h>
 
 char	*ft_dup_cpy_malloc_free(char *str, char *end_ptr, char *to_free)
 {
@@ -59,7 +60,7 @@ char	*ft_fill_static(char **static_str, char **eol, int *bytes_read, int fd)
 {
 	char	*line;
 
-	while (!check_static_str(*static_str, eol))
+	while (!check_static_str(*static_str, eol, bytes_read, 0))
 	{
 		line = get_nbytes(fd, bytes_read);
 		if (!line)
@@ -73,7 +74,7 @@ char	*ft_fill_static(char **static_str, char **eol, int *bytes_read, int fd)
 	return (line);
 }
 
-char	*ft_return_line(char **static_str, char *eol, int free_static)
+char	*ft_return_line(char **static_str, char *eol)
 {
 	char	*new_line;
 
@@ -86,7 +87,7 @@ char	*ft_return_line(char **static_str, char *eol, int free_static)
 	*static_str = ft_dup_cpy_malloc_free(eol + 1, NULL, *static_str);
 	if (!*static_str)
 		return (something_happened(new_line, NULL));
-	if ((static_str && *static_str[0] == '\0') || free_static)
+	if ((static_str && *static_str[0] == '\0'))
 	{
 		free(*static_str);
 		*static_str = NULL;
@@ -103,21 +104,21 @@ char	*get_next_line(int fd, int free_static)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!check_static_str(static_str, &eol))
+	if (!check_static_str(static_str, &eol, &bytes_read, free_static))
 	{
 		line = ft_fill_static(&static_str, &eol, &bytes_read, fd);
 		if (!line)
 			return (something_happened(static_str, NULL));
 	}
 	if (eol)
-		return (ft_return_line(&static_str, eol, free_static));
+		return (ft_return_line(&static_str, eol));
 	if (!bytes_read && static_str)
 	{
 		line = ft_end_of_file(&line, &static_str);
 		static_str = NULL;
 		return (line);
 	}
-	if (line)
+	if (!free_static && line)
 		free(line);
 	return (NULL);
 }

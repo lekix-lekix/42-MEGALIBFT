@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:42:51 by kipouliq          #+#    #+#             */
-/*   Updated: 2024/01/11 18:29:48 by kipouliq         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:13:43 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,19 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	return (final_str);
 }
 
-int	check_static_str(char *static_str, char **eol)
+int	check_static_str(char *static_str, char **eol, int *b_read, int free_static)
 {
 	int	i;
 
 	i = -1;
 	*eol = NULL;
+	if (free_static)
+	{
+		*eol = NULL;
+		*b_read = 0;
+		something_happened(static_str, NULL);
+		return (1);
+	}
 	if (!static_str)
 		return (0);
 	while (static_str[++i])
