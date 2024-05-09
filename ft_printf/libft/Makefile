@@ -6,7 +6,7 @@
 #    By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/16 14:33:33 by lekix             #+#    #+#              #
-#    Updated: 2024/01/11 16:05:45 by kipouliq         ###   ########.fr        #
+#    Updated: 2024/05/09 16:13:21 by kipouliq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,8 @@ SRCS = ft_isalnum.c \
 		ft_lstdelone.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
-		ft_lstmap.c
-
+		ft_lstmap.c \
+		ft_lstfind_one.c
 
 OBJS = $(SRCS:.c=.o)
 

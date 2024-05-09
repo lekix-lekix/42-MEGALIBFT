@@ -6,7 +6,7 @@
 /*   By: kipouliq <kipouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:39:41 by lekix             #+#    #+#             */
-/*   Updated: 2024/01/11 16:35:20 by kipouliq         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:13:36 by kipouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ t_lst				*ft_lstlast(t_lst *lst);
 t_lst				*ft_lstnew(void *content);
 t_lst				*ft_lstmap(t_lst *lst, void *(*f)(void *),
 						void (*del)(void *));
+t_lst				*ft_lstfind_node(t_lst **list, void *mem_addr);
 
 #endif
